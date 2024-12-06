@@ -33,6 +33,7 @@ const HomePage = () => {
                     <div className="space-y-8">
                         <SectionGrid title="Made For You" songs={madeForYouSongs} isLoading={isLoading} />
                         <SectionGrid title="Trending" songs={trendingSongs} isLoading={isLoading} />
+                        <SectionGrid title="New Releases" songs={featuredSongs} isLoading={isLoading} />
                     </div>
                 </div>
             </ScrollArea>
