@@ -141,9 +141,9 @@ const seedSongs = async () => {
         await Song.deleteMany({});
 
         // Insert new songs
-        await Song.insertMany(songs);
+        const result = await Song.insertMany(songs);
 
-        console.log("Songs seeded successfully!");
+        console.log("Songs seeded successfully!", result);
     } catch (error) {
         console.error("Error seeding songs:", error);
     } finally {
@@ -151,4 +151,4 @@ const seedSongs = async () => {
     }
 };
 
-seedSongs();
+seedSongs().catch(console.dir);
