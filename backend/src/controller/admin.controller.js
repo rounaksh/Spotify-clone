@@ -51,7 +51,6 @@ export const createSong = async (req, res, next) => {
 export const deleteSong = async (req, res, next) => {
     try {
         const { id } = req.params
-
         const song = Song.findById(id)
 
         if (song.albumId) {
@@ -59,6 +58,8 @@ export const deleteSong = async (req, res, next) => {
                 $pull: { songs: song._id },
             })
         }
+
+        const re = await Song.findByIdAndDelete(id)
 
         res.status(200).json({ message: 'Song deleted successfully' })
     } catch (error) {
@@ -95,6 +96,7 @@ export const deleteAlbum = async (req, res, next) => {
         const { id } = req.params
         await Song.deleteMany({ albumId: id })
         await Album.findByIdAndDelete(id)
+        console.log(id)
 
         res.status(200).json({ message: 'Album deleted successfully' })
     } catch (error) {
