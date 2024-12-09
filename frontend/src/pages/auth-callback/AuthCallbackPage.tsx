@@ -17,7 +17,12 @@ const AuthCallbackPage = () => {
             try {
                 syncAttempted.current = true
 
-                await axiosInstance.post('/auth/callback', { id: user.id, firstName: user.firstName, lastName: user.lastName, imageUrl: user.imageUrl })
+                await axiosInstance.post('/auth/callback', {
+                    id: user.id,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    imageUrl: user.imageUrl
+                })
             } catch (error) {
                 console.log('Error in auth callback', error)
             } finally {
@@ -27,8 +32,9 @@ const AuthCallbackPage = () => {
 
         syncUser()
     }, [isLoaded, user, navigate])
+
     return (
-        <div className="hscreen w-full bg-black flex items-center justify-center">
+        <div className="h-screen w-full bg-black flex items-center justify-center">
             <Card className="w-[90%] max-w-md bg-zinc-900 border-zinc-800">
                 <CardContent className="flex flex-col items-center gap-4 pt-6">
                     <Loader

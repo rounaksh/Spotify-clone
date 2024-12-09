@@ -4,6 +4,8 @@ import { clerkMiddleware } from '@clerk/express'
 import fileUpload from 'express-fileupload'
 import path from 'path'
 import cors from 'cors'
+import { createServer } from 'http'
+
 import { initializeSocket } from './lib/socket.js'
 
 import { connectDB } from './lib/db.js'
@@ -13,7 +15,6 @@ import authRoutes from './routes/auth.route.js'
 import songsRoutes from './routes/song.route.js'
 import albumsRoutes from './routes/album.route.js'
 import statsRoutes from './routes/stats.route.js'
-import { createServer } from 'http'
 
 dotenv.config()
 
@@ -24,10 +25,12 @@ const PORT = process.env.PORT
 const httpServer = createServer(app)
 initializeSocket(httpServer)
 
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true,
-}))
+app.use(
+    cors({
+        origin: 'http://localhost:3000',
+        credentials: true,
+    })
+)
 app.use(express.json())
 app.use(clerkMiddleware())
 app.use(fileUpload({
@@ -52,7 +55,7 @@ app.use((err, req, res, next) => {
 })
 
 httpServer.listen(PORT, () => {
-    console.log("Server is running on port ", PORT)
+    console.log("Server is running on port " + PORT)
     connectDB()
 })
 

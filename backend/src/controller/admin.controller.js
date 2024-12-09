@@ -96,7 +96,6 @@ export const deleteAlbum = async (req, res, next) => {
         const { id } = req.params
         await Song.deleteMany({ albumId: id })
         await Album.findByIdAndDelete(id)
-        console.log(id)
 
         res.status(200).json({ message: 'Album deleted successfully' })
     } catch (error) {

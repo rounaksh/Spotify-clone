@@ -54,7 +54,7 @@ export const initializeSocket = (server) => {
         socket.on('disconnect', () => {
             let disconnectedUserId
 
-            for (const [userId, socketId] of userSockets.entries) {
+            for (const [userId, socketId] of userSockets.entries()) {
                 if (socketId === socket.id) {
                     disconnectedUserId = userId
                     userSockets.delete(userId)
