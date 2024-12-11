@@ -1,0 +1,8 @@
+{
+  "name": "spotify clone",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/rounaksh/Spotify-clone.git",
+  "author": "rounak sharma <rounak.0734@gmail.com>",
+  "license": "MIT"
+}
