@@ -1,7 +1,11 @@
 {
-  "name": "spotify clone",
+  "name": "spotify-clone",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "npm start --prefix backend"
+  },
   "repository": "https://github.com/rounaksh/Spotify-clone.git",
   "author": "rounak sharma <rounak.0734@gmail.com>",
   "license": "MIT"
