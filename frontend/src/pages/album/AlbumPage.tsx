@@ -22,21 +22,20 @@ const AlbumPage = () => {
 
     if (isLoading) return null
 
-    const handlePlaySong = (index: number) => {
-        if (!currentAlbum) return
-        playAlbum(currentAlbum?.songs, index)
-    }
-
     const handlePlayAlbum = () => {
         if (!currentAlbum) return
 
         const isCurrentAlbumPlaying = currentAlbum?.songs.some(song => song._id === currentSong?._id)
-        if (isCurrentAlbumPlaying) {
-            togglePlay()
-        } else {
+        if (isCurrentAlbumPlaying) togglePlay()
+        else {
             // playing from the beginning
-            playAlbum(currentAlbum?.songs || [], 0)
+            playAlbum(currentAlbum?.songs, 0)
         }
+    }
+
+    const handlePlaySong = (index: number) => {
+        if (!currentAlbum) return
+        playAlbum(currentAlbum?.songs, index)
     }
 
     return (
@@ -96,13 +95,11 @@ const AlbumPage = () => {
                                             return (
                                                 <div key={song._id} onClick={() => handlePlaySong(index)} className="grid grid-cols-[16px_4fr_2fr_1fr] gap-4 px-4 py-2 text-sm text-zinc-400 hover:bg-white/5 rounded-md group  cursor-pointer">
                                                     <div className="flex items-center justify-center">
-                                                        {
-                                                            isCurrentSong && isPlaying ? (
-                                                                <div className="size-4 text-green-500">♬</div>
-                                                            ) : (
-                                                                <span className="group-hover:hidden">{index + 1}</span>
-                                                            )
-                                                        }
+                                                        {isCurrentSong && isPlaying ? (
+                                                            <div className="size-4 text-green-500">♬</div>
+                                                        ) : (
+                                                            <span className="group-hover:hidden">{index + 1}</span>
+                                                        )}
                                                         {!isCurrentSong && (<Play className="w-4 h-4 hidden group-hover:block" />)}
                                                     </div>
 

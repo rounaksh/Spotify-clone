@@ -26,21 +26,22 @@ const AudioPlayer = () => {
 
     // handle song changes
     useEffect(() => {
-        if (!audioRef.current || !currentSong) return
+        if (!audioRef.current || !currentSong) return;
 
-        const audio = audioRef.current
+        const audio = audioRef.current;
 
-        // check if new song start from beginning else resume
-        const isSongChanged = prevSongRef.current !== currentSong?.audioUrl
-        if (isSongChanged) {
-            audio.src = currentSong?.audioUrl
-            // reset playback
-            audio.currentTime = 0
-            prevSongRef.current = currentSong?.audioUrl
+        // check if this is actually a new song
+        const isSongChange = prevSongRef.current !== currentSong?.audioUrl;
+        if (isSongChange) {
+            audio.src = currentSong?.audioUrl;
+            // reset the playback position
+            audio.currentTime = 0;
 
-            if (isPlaying) audio.play()
+            prevSongRef.current = currentSong?.audioUrl;
+
+            if (isPlaying) audio.play();
         }
-    }, [currentSong, isPlaying])
+    }, [currentSong, isPlaying]);
 
     return <audio ref={audioRef} />
 }

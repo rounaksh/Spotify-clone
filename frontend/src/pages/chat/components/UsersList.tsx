@@ -37,6 +37,11 @@ const UsersList = () => {
                                         <span className="font-medium truncate">
                                             {user.fullName}
                                         </span>
+                                        {onlineUsers.has(user.clerkId) ? (
+                                            <p className="mt-1 text-xs text-zinc-400">Online</p>
+                                        ) : (
+                                            <p className="mt-1 text-xs text-zinc-400">Offline</p>
+                                        )}
                                     </div>
                                 </div>
                             ))

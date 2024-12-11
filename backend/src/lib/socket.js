@@ -24,8 +24,7 @@ export const initializeSocket = (server) => {
             io.emit('activities', Array.from(userActivities.entries()))
         })
 
-        socket.on('update_activity', (userId, activity) => {
-            console.log('activity updated', userId, activity)
+        socket.on('update_activity', ({ userId, activity }) => {
             userActivities.set(userId, activity)
             io.emit('activity_updated', { userId, activity })
         })
